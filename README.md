@@ -35,3 +35,12 @@ And simply copy/paste the resulting code.
 
 You're done with setting up the GA for your website! Now, take a breath,
 have a nap, your daily work is over.
+
+### JS
+
+The file app/assets/javascripts/application.js defines some convenience methods
+to use google analytics in javascript.
+Note that GA must be loaded in every pages in it uses (or preferably in application.html.erb),
+which can be done using `loadAnalyticDriver('ga')`. A tracker must then be created using
+`analyticCreate.analyticCreate('UA-XXX')`. See application.html.erb for an example on how to
+use the functions.
