@@ -37,8 +37,6 @@ end
 
 gem "staccato", git: "https://github.com/tpitale/staccato.git"
 
-gem 'pry-byebug', group: :development
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
