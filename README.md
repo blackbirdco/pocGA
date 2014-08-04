@@ -1,4 +1,4 @@
-== README
+## README
 
 This is the proof of concept for google analytics use for blackbird.
 
@@ -8,12 +8,12 @@ or not.
 
 
 
-GA allows you to define customs dimensions to had to a User, which
+GA allows you to define customs dimensions to add to a User, which
 we did. Once that dimension is defined, simply copy and paste the
 generated javascript to wherever you want (we put it in the application
 layout).
 Don't forget to use ga(set,...) before ga(send, event) to be sure your
-custom dimension value will be sent to the GA api.
+custom dimension value is sent to the GA api.
 
 That's it for the frontend. Take a rest, grab a beer and enjoy the
 satifaction of such a hard work done.
@@ -27,7 +27,7 @@ Successfuly logged in? Well play! That was the tricky part!
 
 Now, you may want to query the api as enjoying a successful login doesn't
 last forever (or you boss might have asked you to stop partying for nothing).
-In order to forge queries to send to the GA api, user this:
+In order to forge queries to send to the GA api, use this:
 
 http://ga-dev-tools.appspot.com/explorer/
 
