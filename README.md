@@ -44,3 +44,24 @@ Note that GA must be loaded in every pages in it uses (or preferably in applicat
 which can be done using `loadAnalyticDriver('ga')`. A tracker must then be created using
 `analyticCreate.analyticCreate('UA-XXX')`. See application.html.erb for an example on how to
 use the functions.
+
+
+### Legato
+
+To use Legato, simply follow the doc using the Service Accounts part for OAuth2 authentification
+towards google.
+
+Legato is pretty strait forward to use, but here are some tricks:
+
+First of all, instead using user = "", or user.profiles,etc... use:
+service_account_user, which is a helper method declared in legato_helpers.
+
+If you've got a Legato class named Exit, profile.exit will fetch all data concerning whatever is
+declared in this class. But here is a drawback from using Legato: profile.exit will be an instance
+of Legato Query which is basically an Array of OpenStruct. When you render a json directly from that
+you will have the following output:
+
+[table=>{key=>value, key => value}, table=>{key=>value, key => value}]
+
+We want something like: [{key=>value, key => value}, {key=>value, key => value}]
+To achieve this, simply use the GoogleAnalyticsSerializer
