@@ -1,11 +1,6 @@
 module GoogleAnalytics
   extend ActiveSupport::Concern
 
-  included do
-    attr_accessor :untracked_actions
-    after_filter  :track_pageview, except: :untracked_actions
-  end
-
   def tracker
     @tracker ||= Staccato.tracker(GA_TRACKING_ID, generate_uuid,# pass current_user.md5 (ou w/er)here
                                                   tracker_defaults)
@@ -47,5 +42,11 @@ module GoogleAnalytics
 
   def add_custom_metrics
     # if ever needed
+  end
+
+  module ClassMethods
+    def skip_tracker_for(actions)
+      self.send(:after_filter, :track_pageview, except: actions)
+    end
   end
 end
