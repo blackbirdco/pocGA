@@ -2,10 +2,20 @@ class GoogleAnalyticsSerializer
 
   def self.serialize(legato_query)
 
-    result = legato_query.map{|v| v.to_h}
+    results = Array.new
 
-    result.map{|v| v.map{|key, v|  {(key.to_s == "dimension1") ? (:community) : (key) => v} }.reduce(:merge)}
+    legato_query.each{|v| results << v.to_h}
 
+    results.each do |result|
+      dimensions_to_understandable_key(result, :dimension1, :community)
+    end
+
+  end
+
+  private
+
+  def self.dimensions_to_understandable_key(hash, dimension, understandable_key)
+    hash[understandable_key] = hash.delete dimension
   end
 
 end
