@@ -45,7 +45,7 @@ module GoogleAnalytics
   end
 
   module ClassMethods
-    def track_for(actions)
+    def track_pageview_for(actions)
       self.send(:after_filter, :track_pageview, only: actions)
     end
   end

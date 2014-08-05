@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   include GoogleAnalytics
 
-  track_for [:index]
+  track_pageview_for [:index]
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages
