@@ -45,8 +45,8 @@ module GoogleAnalytics
   end
 
   module ClassMethods
-    def skip_tracker_for(actions)
-      self.send(:after_filter, :track_pageview, except: actions)
+    def track_for(actions)
+      self.send(:after_filter, :track_pageview, only: actions)
     end
   end
 end
