@@ -1,0 +1,13 @@
+<div id="myfirstchart" style="height: 250px;"></div>
+
+<script >
+  function data_for_morris_donut(data_array) {
+    result = [];
+    data_array.forEach(function(data){result.push({label: data["community"], value: data["pageviews"]})});
+    return result;
+  }
+  new Morris.Donut({
+    element: 'myfirstchart',
+    data: data_for_morris_donut(<%= @data.to_json.html_safe %>)
+  });
+</script>
