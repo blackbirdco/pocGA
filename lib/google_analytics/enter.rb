@@ -2,5 +2,5 @@ class Enter
   extend Legato::Model
 
   metrics :pageviews
-  dimensions :dimension1, :language
+  dimensions :dimension1, :language, :date
 end

@@ -1,13 +1,45 @@
-<div id="myfirstchart" style="height: 250px;"></div>
+<div id="myfirstchart"></div>
 
 <script >
-  function data_for_morris_donut(data_array) {
-    result = [];
-    data_array.forEach(function(data){result.push({label: data["community"], value: data["pageviews"]})});
-    return result;
+  function data_for_morris_area(data_array) {
+    var y = data_array
+    var result = []
+    var pattern = /(\d{4})(\d{2})(\d{2})/;
+
+    for (var i = 0; i < y.length; ++i) {
+      var obj = y[i];
+      var x = {};
+
+      if (x["date"] == undefined)
+        x["date"] = obj.date.replace(pattern,'$1-$2-$3');
+
+      if (x[obj.community] == undefined)
+        x[obj.community] = obj.pageviews;
+
+      if (x["1"] == undefined)
+        x["1"] = "0"
+
+      if (x["2"] == undefined)
+        x["2"] = "0"
+
+      result.push(x);
+    }
+
+    console.log(result);
+    return result
   }
-  new Morris.Donut({
-    element: 'myfirstchart',
-    data: data_for_morris_donut(<%= @data.to_json.html_safe %>)
-  });
+  new Morris.Area({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: data_for_morris_area(<%= @data.to_json.html_safe %>),
+  // The name of the data record attribute that contains x-values.
+  xkey: 'date',
+  ykeys: ['1', '2'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  xLabels: "day",
+  labels: ['Pageviews for community 1', 'Pageviews for community 2']
+});
 </script>
