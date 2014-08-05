@@ -18,6 +18,15 @@ module GoogleAnalytics
     @hit.track!
   end
 
+  # see https://github.com/tpitale/staccato/#track-some-data
+  # for informations on params
+  def track_event(params)
+    @hit = Staccato::Event.new(tracker, params)
+    add_custom_dimensions
+    add_custom_metrics
+    @hit.track!
+  end
+
   protected
 
   def generate_uuid
